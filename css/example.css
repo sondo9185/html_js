@@ -2,11 +2,15 @@ body{
     background-color: aquamarine;
 }
 
-inline{
+.inline{
     display: inline-block;
     cursor: pointer;
 }
 
-red{
+.red{
     color: red;
+}
+
+#inputModal::backdrop{
+    background-color: rgba(0,0,0,0.7);
 }
