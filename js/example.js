@@ -11,10 +11,11 @@ const setUserName = (name) => {
 
 const localName = localStorage.getItem('name');
 if (localName) setUserName(localName);
-nameH1Elemnent.textContent = localName;
+//  nameH1Elemnent.textContent = localName;
 
-
-nameH1Elemnent.oncick = () => {
+//  console.log(nameH1Elemnent);
+nameH1Elemnent.onclick = () => {
+  //  console.log(inputModalElement);
   inputModalElement.showModal();
   //  const inputName = prompt('이름을 입력해주세요.');
   //  if (inputName) {
@@ -26,7 +27,21 @@ nameH1Elemnent.oncick = () => {
   //  }
 };
 
+const modalSubmitBtn = document.querySelector('button.modalSubmit');
+
+modalSubmitBtn.onclick = () => {
+  const modalFormElement = document.querySelector('.modalForm');
+  const formData = new FormData(modalFormElement);
+
+  for (const [key, value] of formData) {
+    localStorage.setItem(key, value);
+    if (key === 'userName') setUserName(value);
+    //  console.log('${key}: ${value}');
+  }
+  inputModalElement.close();
+};
+
 inputModalElement.onclick = (event) => {
-  if (event.target.nodeName === 'DIALOG') inputModalElement.closest();
-  console.log(event.target.nodeName);
+  if (event.target.nodeName === 'DIALOG') inputModalElement.close();
+  //  console.log(event.target.nodeName);
 };
